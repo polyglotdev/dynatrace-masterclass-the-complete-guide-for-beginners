@@ -13,17 +13,8 @@
 
 ## Section 3: Infrastructure Observability
 
-- Host Performance data
-- Host Problems monitoring
-- Types of Dynatrace Problems monitoring
-- Host Availability
-- Host Availability monitoring
-- Host Events
-- Host Logs
-- Quick tip on the Timeframe selector
-- Frequent Issues feature
-- Renaming your host
-- Exclude specific Disks and Network traffic from monitoring
-- Network Monitoring
+### Host Performance Data
+
+
 
 ## Section 4: Cloud Automation
