@@ -27,4 +27,8 @@ Dynatrace can alert you when a host is having problems. You can configure the al
 
 Host availability is the percentage of time that a host is available. It is calculated as the time the host is available divided by the total time.
 
+- When its running its blue and when its offline its red.
+- Offline does not mean the host is down, it could be that the agent is not running or there could be a communication error.
+- It will also show the Maintenance window if one is set.
+
 ## Section 4: Cloud Automation
