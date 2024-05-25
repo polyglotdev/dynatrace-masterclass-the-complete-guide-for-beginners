@@ -23,4 +23,8 @@ Dynatrace can alert you when a host is having problems. You can configure the al
 
 [Resource Events](https://docs.dynatrace.com/docs/platform/davis-ai/basics/events/event-types/resource-events)
 
+#### Host Availability
+
+Host availability is the percentage of time that a host is available. It is calculated as the time the host is available divided by the total time.
+
 ## Section 4: Cloud Automation
