@@ -1,3 +1,13 @@
+terraform {
+  backend "remote" {
+    organization = "polyglotdev"
+
+    workspaces {
+      name = "dynatrace-masterclass-the-complete-guide-for-beginners"
+    }
+  }
+}
+
 provider "aws" {
   region = var.aws_region
 }
