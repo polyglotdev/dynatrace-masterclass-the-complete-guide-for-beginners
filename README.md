@@ -2,6 +2,8 @@
 
 [course link](https://www.udemy.com/course/dynatrace-learning-tutorial)
 
+[Dynatrace Tenant](https://asw86539.live.dynatrace.com/ui/dashboards?gtf=-2h&gf=all)
+
 ## Section 2: The Basics
 
 - Create an account with Dynatrace
@@ -25,7 +27,3 @@
 - Network Monitoring
 
 ## Section 4: Cloud Automation
-
-- Release
-- Service-level objectives
-- Creating a new SLO
