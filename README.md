@@ -30,5 +30,6 @@ Host availability is the percentage of time that a host is available. It is calc
 - When its running its blue and when its offline its red.
 - Offline does not mean the host is down, it could be that the agent is not running or there could be a communication error.
 - It will also show the Maintenance window if one is set.
+  - So if you know the host is going to be down for maintenance you can set a maintenance window so that you don't get alerts.
 
 ## Section 4: Cloud Automation
