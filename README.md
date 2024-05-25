@@ -32,4 +32,15 @@ Host availability is the percentage of time that a host is available. It is calc
 - It will also show the Maintenance window if one is set.
   - So if you know the host is going to be down for maintenance you can set a maintenance window so that you don't get alerts.
 
+### Application Monitoring
+
+[Docs](https://docs.dynatrace.com/docs/manage/subscriptions-and-licensing/monitoring-consumption-classic/application-and-infrastructure-monitoring)
+
+We have an option to monitor the application and infrastructure. The application monitoring is done by the OneAgent. The OneAgent is a lightweight agent that is installed on the host and it collects data about the host and the applications running on the host. It has two modes:
+
+- Full-stack monitoring: This is the default mode and it monitors the host and the applications running on the host.
+- Infrastructure monitoring: This mode only monitors the host and not the applications running on the host.
+
+The Full-stack option is going to be more expensive but has added benefits. The infrastructure monitoring is going to be cheaper but you will not get the application monitoring. It can be 3x less expensive to use the infrastructure monitoring.
+
 ## Section 4: Cloud Automation
