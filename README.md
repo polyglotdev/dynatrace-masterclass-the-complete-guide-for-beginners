@@ -1,5 +1,7 @@
 # Dynatrace Masterclass - The Complete Guide for Beginners
 
+[course link](https://www.udemy.com/course/dynatrace-learning-tutorial)
+
 ## Section 2: The Basics
 
 - Create an account with Dynatrace
