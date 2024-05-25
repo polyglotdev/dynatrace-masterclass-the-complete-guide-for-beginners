@@ -15,6 +15,10 @@
 
 ### Host Performance Data
 
+#### Host Problem Alerting
 
+Dynatrace can alert you when a host is having problems. You can configure the alerting rules in the `Settings` -> `Anomaly Detection` -> `Hosts` -> `Host availability` section.
+
+![Host Problems](./images/host-errors.png)
 
 ## Section 4: Cloud Automation
