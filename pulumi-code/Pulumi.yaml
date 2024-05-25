@@ -1,0 +1,7 @@
+name: pulumi-code
+runtime: go
+description: Using Golang create a EC2 instance with VPC, subnet(public and private) with an internet gateway and routing table also create a security group that will allow for ssh traffic at port 22. I also need a IAM policy that has access to all services.
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: https://www.pulumi.com/ai/api/project/34eb1e61-5eb5-4db0-9303-2a457330682f.zip
