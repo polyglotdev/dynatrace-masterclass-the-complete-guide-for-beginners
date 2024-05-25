@@ -1,8 +1,6 @@
 package main
 
 import (
-	"encoding/json"
-
 	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/ec2"
 	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -107,33 +105,20 @@ func main() {
 			return err
 		}
 
-		// Create an IAM Policy
-		policyJSON, err := json.Marshal(map[string]interface{}{
-			"Version": "2012-10-17",
-			"Statement": []map[string]interface{}{
-				{
-					"Effect":   "Allow",
-					"Action":   "*",
-					"Resource": "*",
-				},
-			},
-		})
-		if err != nil {
-			return err
-		}
-		policy, err := iam.NewPolicy(ctx, "godMode", &iam.PolicyArgs{
-			Name:        pulumi.String("god_mode_policy"),
-			Description: pulumi.String("A policy with full permissions"),
-			Policy:      pulumi.String(policyJSON),
+		// Look up the existing IAM Policy
+		arn := string(pulumi.String("arn:aws:iam::654654523805:policy/god_mode_policy"))
+
+		policy, err := iam.LookupPolicy(ctx, &iam.LookupPolicyArgs{
+			Arn: &arn,
 		})
 		if err != nil {
 			return err
 		}
 
-		// Attach the policy to the role
+		// Attach the existing policy to the role
 		_, err = iam.NewRolePolicyAttachment(ctx, "rolePolicyAttachment", &iam.RolePolicyAttachmentArgs{
 			Role:      role.Name,
-			PolicyArn: policy.Arn,
+			PolicyArn: pulumi.String(policy.Arn),
 		})
 		if err != nil {
 			return err
@@ -175,13 +160,13 @@ func main() {
 		}
 
 		// Create an EC2 Instance
-		_, err = ec2.NewInstance(ctx, "exampleInstance", &ec2.InstanceArgs{
+		_, err = ec2.NewInstance(ctx, "domEc2Instance", &ec2.InstanceArgs{
 			Ami:                 pulumi.String(ami.Id),
 			InstanceType:        pulumi.String(instanceType),
 			SubnetId:            subnet.ID(),
 			VpcSecurityGroupIds: pulumi.StringArray{securityGroup.ID()},
 			Tags: pulumi.StringMap{
-				"Name": pulumi.String("example_instance"),
+				"Name": pulumi.String("dom_ec2_instance"),
 			},
 			IamInstanceProfile: instanceProfile.Name, // Attach IAM instance profile to EC2 instance
 		})

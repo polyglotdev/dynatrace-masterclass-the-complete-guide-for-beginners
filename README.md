@@ -21,4 +21,6 @@ Dynatrace can alert you when a host is having problems. You can configure the al
 
 ![Host Problems](./images/host-errors.png)
 
+[Resource Events](https://docs.dynatrace.com/docs/platform/davis-ai/basics/events/event-types/resource-events)
+
 ## Section 4: Cloud Automation
