@@ -1,13 +1,3 @@
-terraform {
-  backend "remote" {
-    organization = "polyglotdev"
-
-    workspaces {
-      name = "dynatrace-masterclass-the-complete-guide-for-beginners"
-    }
-  }
-}
-
 provider "aws" {
   region = var.aws_region
 }
@@ -116,10 +106,10 @@ resource "aws_iam_policy" "god_mode" {
 
 # EC2 Instance
 resource "aws_instance" "example" {
-  ami             = data.aws_ami.amazon_linux.id
-  instance_type   = var.instance_type
-  subnet_id       = aws_subnet.subnet1.id
-  security_groups = [aws_security_group.ssh_access.name]
+  ami                    = data.aws_ami.amazon_linux.id
+  instance_type          = var.instance_type
+  subnet_id              = aws_subnet.subnet1.id
+  vpc_security_group_ids = [aws_security_group.ssh_access.id]
 
   tags = {
     Name = "example_instance"
