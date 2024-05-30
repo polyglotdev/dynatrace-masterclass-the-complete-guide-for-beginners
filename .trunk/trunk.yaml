@@ -12,16 +12,24 @@ plugins:
 # Many linters and tools depend on runtimes - configure them here. (https://docs.trunk.io/runtimes)
 runtimes:
   enabled:
+    - go@1.21.0
     - node@18.12.1
     - python@3.10.8
 # This is the section where you manage your linters. (https://docs.trunk.io/check/configuration)
 lint:
   enabled:
+    - checkov@3.2.114
+    - golangci-lint@1.57.2
+    - osv-scanner@1.7.4
+    - oxipng@9.1.1
+    - tflint@0.51.1
+    - trivy@0.51.4
+    - yamllint@1.35.1
     - gofmt@1.20.4
     - git-diff-check
-    - markdownlint@0.40.0
+    - markdownlint@0.41.0
     - prettier@3.2.5
-    - trufflehog@3.76.3
+    - trufflehog@3.77.0
 actions:
   disabled:
     - trunk-announce
