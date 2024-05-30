@@ -79,3 +79,8 @@ We have an option to monitor the application and infrastructure. The application
 The Full-stack option is going to be more expensive but has added benefits. The infrastructure monitoring is going to be cheaper but you will not get the application monitoring. It can be 3x less expensive to use the infrastructure monitoring.
 
 ## Section 4: Cloud Automation
+
+Dynatrace a few cloud automation tools built in:
+
+- Releases
+- Service-level objectives: SLOs are a way to measure the performance of your application. You can set up SLOs in the Cloud Automation section of Dynatrace.
