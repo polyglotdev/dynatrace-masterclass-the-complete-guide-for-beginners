@@ -33,6 +33,39 @@ resource "aws_vpc" "main" {
   }
 }
 
+resource "aws_iam_role" "flow_log_role" {
+  name               = "flow_log_role"
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "vpc-flow-logs.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_cloudwatch_log_group" "flow_log" {
+  name              = "vpc-flow-log"
+  retention_in_days = 365
+  kms_key_id        = "arn:aws:kms:us-east-1:654654523805:key/4dd6699c-3e48-478f-a4ef-af334a0bfd6a"
+}
+
+resource "aws_flow_log" "example" {
+  log_destination      = aws_cloudwatch_log_group.flow_log.arn
+  log_destination_type = "cloud-watch-logs"
+  traffic_type         = "ALL"
+  vpc_id               = aws_vpc.main.id
+  iam_role_arn         = aws_iam_role.flow_log_role.arn
+}
+
 # Internet Gateway
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
@@ -55,10 +88,9 @@ resource "aws_route_table" "main" {
 
 # Subnets
 resource "aws_subnet" "subnet1" {
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = var.subnet1_cidr
-  availability_zone       = var.availability_zone1
-  map_public_ip_on_launch = true
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.subnet1_cidr
+  availability_zone = var.availability_zone1
   tags = {
     Name = "subnet1"
   }
@@ -73,7 +105,7 @@ resource "aws_subnet" "subnet2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.subnet2_cidr
   availability_zone       = var.availability_zone2
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = false
   tags = {
     Name = "subnet2"
   }
@@ -86,13 +118,15 @@ resource "aws_route_table_association" "subnet2" {
 
 # Security Group
 resource "aws_security_group" "ssh_access" {
-  vpc_id = aws_vpc.main.id
+  vpc_id      = aws_vpc.main.id
+  description = "SSH Security Group"
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # Restrict this in a production environment
+    cidr_blocks = ["75.220.213.2/32"]
+    description = "SSH access from my IP"
   }
 
   egress {
@@ -100,6 +134,7 @@ resource "aws_security_group" "ssh_access" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
+    description = "Allow all outbound traffic"
   }
 
   tags = {
